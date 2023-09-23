@@ -27,6 +27,8 @@ public class boxManager : MonoBehaviour
     //積み上げる箱の生成する縦の幅
     private float _boxY = 0.8f;
 
+    gameManager _gameManager;
+
     public float boxX
     {
         get { return this._boxX; }
@@ -42,13 +44,20 @@ public class boxManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        _gameManager = gameManager.GetComponent<gameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //下ボタンが連打ボタンに対応
+        if (Input.GetKeyDown(KeyCode.DownArrow)){
+            PushRendaRed();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            _gameManager.PushNextButton();
+        }
     }
 
     //最初に行う箱の列の生成
