@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.naichilab.easysoundplayer": "https://github.com/naichilab/unity-easy-sound-player.git?path=Assets/naichilab/EasySoundPlayer",
+    "com.neuecc.unirx": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
     "com.unity.2d.animation": "9.0.3",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "8.0.2",

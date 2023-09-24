@@ -43,3 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: boxAndHide
+    uniqueID: 185993999
+    locked: 0
+  - name: Canvass
+    uniqueID: 4226272293
+    locked: 0

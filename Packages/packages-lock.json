@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.naichilab.easysoundplayer": {
+      "version": "https://github.com/naichilab/unity-easy-sound-player.git?path=Assets/naichilab/EasySoundPlayer",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.neuecc.unirx": "7.1.0"
+      },
+      "hash": "cc872c3e5a2ed5276e3804c6b5e592f977b7efa0"
+    },
+    "com.neuecc.unirx": {
+      "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "284d5c50d3f1ddd9fa7df3d382ea904732a9c2ff"
+    },
     "com.unity.2d.animation": {
       "version": "9.0.3",
       "depth": 0,

@@ -8,9 +8,10 @@ public class boxManager : MonoBehaviour
     [SerializeField] private GameObject[] boxPrefabs;
     [SerializeField] private GameObject gameManager;
     [SerializeField] private int totalBox = 60;
-    [SerializeField] private int maxBox = 15;
-    [SerializeField] private int minBox = 3;
+    [SerializeField] private int maxBox = 10;
+    [SerializeField] private int minBox = 1;
     [SerializeField] private AudioClip tapSound;
+    [SerializeField] private AudioClip moveSound;
     [SerializeField] private AudioSource audioSource;
     private int boxNum;
     private int boxRemain;
@@ -27,7 +28,7 @@ public class boxManager : MonoBehaviour
     //積み上げる箱の生成する縦の幅
     private float _boxY = 0.8f;
 
-    gameManager _gameManager;
+    private gameManager _gameManager;
 
     public float boxX
     {
@@ -113,7 +114,7 @@ public class boxManager : MonoBehaviour
             {
                 boxes[lastCube, raw].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
                 audioSource.PlayOneShot(tapSound);
-                Destroy(boxes[lastCube, raw], 0.2f);
+                Destroy(boxes[lastCube, raw], 0.1f);
                 lastCube++;
                 boxRemain--;
             }
@@ -158,6 +159,7 @@ public class boxManager : MonoBehaviour
     {
         raw++;
         lastCube = 0;
+        audioSource.PlayOneShot(moveSound);
     }
 
     //現在の列を終えて次の列に行くことができるかどうか判定

@@ -6,8 +6,6 @@ using DG.Tweening;
 public class cameraManager : MonoBehaviour
 {
     [SerializeField] private boxManager boxManager;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip flickSound;
     //現在のカメラ位置
     private Vector3 _cameraPos;
     //スワイプのスピード
@@ -38,7 +36,6 @@ public class cameraManager : MonoBehaviour
         this.transform.DOMove(new Vector3(_cameraPos.x + boxManager.boxX, 0f, -10f), 0.3f).SetRelative(false).SetEase(Ease.OutBack);
         //カメラの現在位置を更新
         _cameraPos.x += boxManager.boxX;
-        audioSource.PlayOneShot(flickSound);
     }
 
     public void PushNextButton()
