@@ -2666,7 +2666,7 @@ MonoBehaviour:
   boxPrefabs:
   - {fileID: 2348154906768600435, guid: 37d5269464bb94a6d87b077d7e7202d5, type: 3}
   gameManager: {fileID: 720293955}
-  totalBox: 75
+  totalBox: 70
   maxBox: 10
   minBox: 1
   tapSound: {fileID: 8300000, guid: 00422f4f03fa34787bf4388b7166b64a, type: 3}

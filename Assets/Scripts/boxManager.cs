@@ -112,11 +112,8 @@ public class boxManager : MonoBehaviour
         {
             if (boxes[lastCube, raw].tag == "BoxRed")
             {
-                boxes[lastCube, raw].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
-                audioSource.PlayOneShot(tapSound);
-                Destroy(boxes[lastCube, raw], 0.1f);
-                lastCube++;
-                boxRemain--;
+                DestroyBox(boxes[lastCube, raw]);
+
             }
             //違う色のボタンを押した時
             else
@@ -125,6 +122,21 @@ public class boxManager : MonoBehaviour
             }
         }
     }
+
+
+    private IEnumerator DestroyBox(GameObject box)
+    {
+        box.transform.DOMove(new Vector3(-4f, 0, 0), 0.1f).SetRelative(true).SetEase(Ease.OutQuint);
+        audioSource.PlayOneShot(tapSound);
+
+        // ここで必要な処理が終わるのを待つ
+        yield return new WaitForSeconds(0.15f);
+
+        Destroy(box);
+        lastCube++;
+        boxRemain--;
+    }
+
 
     //黄色いボタンを押した時の処理
     public void PushRendaYellow()
