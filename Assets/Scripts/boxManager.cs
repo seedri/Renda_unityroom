@@ -15,12 +15,13 @@ public class boxManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     private int boxNum;
     private int boxRemain;
+    private int[] boxRemainRow;
     private GameObject[,] boxes;
     //現在の行
     private int lastCube = 0;
     //現在の列
-    private int raw = 0;
-    private int lastRaw=100;
+    private int row = 0;
+    private int lastrow=100;
     private int num;
 
     //列の横幅
@@ -62,18 +63,19 @@ public class boxManager : MonoBehaviour
     }
 
     //最初に行う箱の列の生成
-    public void MakeBoxRaws()
+    public void MakeBoxrows()
     {
 
         float x = 0;
         float y = boxY;
 
         //最大の列数を計算
-        int maximumRaw = (int)Mathf.Ceil((float)(totalBox - maxBox) / minBox + 1);
+        int maximumrow = (int)Mathf.Ceil((float)(totalBox - maxBox) / minBox + 1);
 
         //箱を管理する二次元配列を用意      
-        boxes = new GameObject[maxBox + 1, maximumRaw];
+        boxes = new GameObject[maxBox + 1, maximumrow];
 
+        boxRemainRow = new int[maximumrow];
         while (totalBox > 0)
         {
             //その列における箱の数を決める
@@ -85,17 +87,19 @@ public class boxManager : MonoBehaviour
                 num = Random.Range(0, boxPrefabs.Length);
                 GameObject cube = Instantiate(boxPrefabs[num], new Vector3(x, y, 0), Quaternion.identity);
                 y += 1.3f;
-                boxes[j, raw] = cube;
+                boxes[j, row] = cube;
             }
             x += boxX;
             y = boxY;
-            raw++;
+            //どの列に何箱あるかを記録
+            boxRemainRow[row] = boxNum;
+            row++;
             totalBox -= boxNum;
             boxRemain += boxNum;
         }
         //今回の列数を記録してから列の情報を初期化
-        lastRaw = raw - 1;
-        raw = 0;
+        lastrow = row - 1;
+        row = 0;
 
     }
 
@@ -103,16 +107,21 @@ public class boxManager : MonoBehaviour
     public void PushRendaRed()
     {
         //連打を必要以上にしたらゲームオーバー
-        if (IsRawNull())
+        if (IsrowNull())
         {
             gameManager.GetComponent<gameManager>().AddError();
         }
         //箱をどかして消去する処理
         else
         {
-            if (boxes[lastCube, raw].tag == "BoxRed")
+            if (boxes[lastCube, row].tag == "BoxRed")
             {
-                DestroyBox(boxes[lastCube, raw]);
+                boxes[lastCube, row].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
+                audioSource.PlayOneShot(tapSound);
+                Destroy(boxes[lastCube, row], 0.1f);
+                lastCube++;
+                boxRemain--;
+                boxRemainRow[row]--;
 
             }
             //違う色のボタンを押した時
@@ -124,38 +133,27 @@ public class boxManager : MonoBehaviour
     }
 
 
-    private IEnumerator DestroyBox(GameObject box)
-    {
-        box.transform.DOMove(new Vector3(-4f, 0, 0), 0.1f).SetRelative(true).SetEase(Ease.OutQuint);
-        audioSource.PlayOneShot(tapSound);
-
-        // ここで必要な処理が終わるのを待つ
-        yield return new WaitForSeconds(0.15f);
-
-        Destroy(box);
-        lastCube++;
-        boxRemain--;
-    }
 
 
     //黄色いボタンを押した時の処理
     public void PushRendaYellow()
     {
         //連打を必要以上にしたらゲームオーバー
-        if (IsRawNull())
+        if (IsrowNull())
         {
             gameManager.GetComponent<gameManager>().AddError();
         }
         //箱をどかして消去する処理
         else
         {
-            if (boxes[lastCube, raw].tag == "BoxYellow")
+            if (boxes[lastCube, row].tag == "BoxYellow")
             {
-                boxes[lastCube, raw].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
+                boxes[lastCube, row].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
                 audioSource.PlayOneShot(tapSound);
-                Destroy(boxes[lastCube, raw], 0.2f);
+                Destroy(boxes[lastCube, row], 0.2f);
                 lastCube++;
                 boxRemain--;
+                boxRemainRow[row]--;
             }
             //違う色のボタンを押した時
             else
@@ -167,35 +165,20 @@ public class boxManager : MonoBehaviour
 
 
 
-    public void goNextRaw()
+    public void goNextrow()
     {
-        raw++;
+        row++;
         lastCube = 0;
         audioSource.PlayOneShot(moveSound);
     }
 
     //現在の列を終えて次の列に行くことができるかどうか判定
-    public bool IsRawNull()
+    public bool IsrowNull()
     {
-        if (boxes[lastCube, raw] == null) return true;
+        if (boxRemainRow[row]==0) return true;
         else return false;
     }
 
-    //クリアしたか判定
-    public bool CheckFinished()
-    {
-        bool clear = false;
-        int count = 0;
-        for(int i = 0; i < maxBox; i++)
-        {
-            if (boxes[i, lastRaw] != null) count++;
-        }
-        if (count == 1)
-        {
-            clear = true;
-        }
-        return clear;
-    }
 
     //クリア判定
     public bool CanClear()

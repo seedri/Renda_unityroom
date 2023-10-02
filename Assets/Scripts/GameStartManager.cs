@@ -75,7 +75,7 @@ public class GameStartManager : MonoBehaviour
     public void GameStart()
     {
         gameManager.GetComponent<gameManager>().timeFlag = true;
-        boxManager.GetComponent<boxManager>().MakeBoxRaws();
+        boxManager.GetComponent<boxManager>().MakeBoxrows();
     }
 }
     

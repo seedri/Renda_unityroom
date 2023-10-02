@@ -117,13 +117,13 @@ public class gameManager : MonoBehaviour
     //「次へ」ボタンを押した時の処理
     public void PushNextButton()
     {
-        if (!boxManager.GetComponent<boxManager>().IsRawNull()) AddError();
+        if (!boxManager.GetComponent<boxManager>().IsrowNull()) AddError();
         else if (boxManager.GetComponent<boxManager>().CanClear()) GameClear();
 
         else
         {
             _cameraManager.cameraMove();
-            boxManager.GetComponent<boxManager>().goNextRaw();
+            boxManager.GetComponent<boxManager>().goNextrow();
         }    
     }
 
@@ -138,10 +138,10 @@ public class gameManager : MonoBehaviour
             //指定した閾値より大きく、かつ次の列に行って良い場合、フリック判定
             if (dif_x > FlickDistance)
             {
-                if (boxManager.GetComponent<boxManager>().IsRawNull())
+                if (boxManager.GetComponent<boxManager>().IsrowNull())
                 {
                     _cameraManager.cameraMove();
-                    boxManager.GetComponent<boxManager>().goNextRaw();
+                    boxManager.GetComponent<boxManager>().goNextrow();
                 }
                 //フリックしたのに列が空じゃない時、エラーして戻す
                 else
