@@ -561,7 +561,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 185993999
   m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &439278349
@@ -1922,8 +1922,8 @@ Transform:
   m_GameObject: {fileID: 1045509020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: -1, z: 0}
-  m_LocalScale: {x: 50, y: 0.2424, z: 1}
+  m_LocalPosition: {x: 45, y: -1, z: 0}
+  m_LocalScale: {x: 100, y: 0.2424, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2216,7 +2216,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 185993999
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1284303364
@@ -2577,7 +2577,7 @@ MonoBehaviour:
   - {fileID: 2348154906768600435, guid: 37d5269464bb94a6d87b077d7e7202d5, type: 3}
   gameManager: {fileID: 720293955}
   totalBox: 75
-  maxBox: 10
+  maxBox: 9
   minBox: 1
   tapSound: {fileID: 8300000, guid: 00422f4f03fa34787bf4388b7166b64a, type: 3}
   moveSound: {fileID: 8300000, guid: 4f0a0eecf99eed448b182889283584a3, type: 3}
