@@ -38,7 +38,7 @@ public class gameManager : MonoBehaviour
     //カメラマネージャスクリプト
     cameraManager _cameraManager;
     //ミスした時のペナルティ秒
-    private const int MissTime = 1;
+    private const int MissTime = 2;
 
 
     public float time

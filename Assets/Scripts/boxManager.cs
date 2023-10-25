@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class boxManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class boxManager : MonoBehaviour
     [SerializeField] private AudioClip tapSound;
     [SerializeField] private AudioClip moveSound;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] TextMeshProUGUI boxRemainText;
     private int boxNum;
     private int boxRemain;
     private int[] boxRemainRow;
@@ -47,6 +49,7 @@ public class boxManager : MonoBehaviour
     void Start()
     {
         _gameManager = gameManager.GetComponent<gameManager>();
+        
     }
 
     // Update is called once per frame
@@ -101,9 +104,12 @@ public class boxManager : MonoBehaviour
         lastrow = row - 1;
         row = 0;
 
+        BoxRemainDisp();
+
     }
 
     //赤いボタンを押した時の処理
+    //現在の使用はボタンの色は赤のみなので、こちらを改変
     public void PushRendaRed()
     {
         //連打を必要以上にしたらゲームオーバー
@@ -122,6 +128,7 @@ public class boxManager : MonoBehaviour
                 lastCube++;
                 boxRemain--;
                 boxRemainRow[row]--;
+                BoxRemainDisp();
 
             }
             //違う色のボタンを押した時
@@ -136,33 +143,39 @@ public class boxManager : MonoBehaviour
 
 
     //黄色いボタンを押した時の処理
-    public void PushRendaYellow()
-    {
-        //連打を必要以上にしたらゲームオーバー
-        if (IsrowNull())
-        {
-            gameManager.GetComponent<gameManager>().AddError();
-        }
-        //箱をどかして消去する処理
-        else
-        {
-            if (boxes[lastCube, row].tag == "BoxYellow")
-            {
-                boxes[lastCube, row].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
-                audioSource.PlayOneShot(tapSound);
-                Destroy(boxes[lastCube, row], 0.2f);
-                lastCube++;
-                boxRemain--;
-                boxRemainRow[row]--;
-            }
-            //違う色のボタンを押した時
-            else
-            {
-                gameManager.GetComponent<gameManager>().AddError();
-            }
-        }
-    }
+    //public void PushRendaYellow()
+    //{
+    //    //連打を必要以上にしたらゲームオーバー
+    //    if (IsrowNull())
+    //    {
+    //        gameManager.GetComponent<gameManager>().AddError();
+    //    }
+    //    //箱をどかして消去する処理
+    //    else
+    //    {
+    //        if (boxes[lastCube, row].tag == "BoxYellow")
+    //        {
+    //            boxes[lastCube, row].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
+    //            audioSource.PlayOneShot(tapSound);
+    //            Destroy(boxes[lastCube, row], 0.2f);
+    //            lastCube++;
+    //            boxRemain--;
+    //            boxRemainRow[row]--;
+    //        }
+    //        //違う色のボタンを押した時
+    //        else
+    //        {
+    //            gameManager.GetComponent<gameManager>().AddError();
+    //        }
+    //    }
+    //}
 
+
+    //残りの箱の個数表示を更新
+    private void BoxRemainDisp()
+    {
+        boxRemainText.text = "残り:" + boxRemain+"個";
+    }
 
 
     public void goNextrow()

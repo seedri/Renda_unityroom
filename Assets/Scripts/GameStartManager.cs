@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using naichilab.EasySoundPlayer.Scripts;
 
 public class GameStartManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameStartManager : MonoBehaviour
     {
         canvasCountDown.gameObject.SetActive(true);
         StartCoroutine("CountDown");
+        SePlayer.Instance.Play(1);
     }
 
     // Update is called once per frame

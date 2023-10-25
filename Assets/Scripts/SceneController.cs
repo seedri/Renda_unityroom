@@ -24,7 +24,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadStage2()
     {
-        SceneManager.LoadScene("GameScene3");
+        SceneManager.LoadScene("GameScene2");
     }
 
     public void LoadTitle()
