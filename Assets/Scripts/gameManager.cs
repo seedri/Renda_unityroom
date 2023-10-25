@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 using static System.TimeZoneInfo;
+using naichilab.EasySoundPlayer.Scripts;
 
 public class gameManager : MonoBehaviour
 {
@@ -17,9 +18,6 @@ public class gameManager : MonoBehaviour
     [SerializeField] Canvas canvasCountDown;
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI timeClear;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip errorSound;
-    [SerializeField] AudioClip clearSound;
 
     //?^?C???A?^?b?N?p????
     private float _time = 0f;
@@ -111,7 +109,7 @@ public class gameManager : MonoBehaviour
         timeFlag = false;
         timeClear.text = "タイム:" + timeText.text;
         gameClearObj.SetActive(true);
-        audioSource.PlayOneShot(clearSound);
+        SePlayer.Instance.Play(4);
     }
 
     //「次へ」ボタンを押した時の処理
@@ -221,6 +219,6 @@ public class gameManager : MonoBehaviour
     {
         ShakeTime();
         this._time += MissTime;
-        audioSource.PlayOneShot(errorSound);
+        SePlayer.Instance.Play(2);
     }
 }

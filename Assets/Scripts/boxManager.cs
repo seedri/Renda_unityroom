@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using naichilab.EasySoundPlayer.Scripts;
 
 public class boxManager : MonoBehaviour
 {
@@ -11,9 +12,6 @@ public class boxManager : MonoBehaviour
     [SerializeField] private int totalBox = 60;
     [SerializeField] private int maxBox = 10;
     [SerializeField] private int minBox = 1;
-    [SerializeField] private AudioClip tapSound;
-    [SerializeField] private AudioClip moveSound;
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] TextMeshProUGUI boxRemainText;
     private int boxNum;
     private int boxRemain;
@@ -123,7 +121,7 @@ public class boxManager : MonoBehaviour
             if (boxes[lastCube, row].tag == "BoxRed")
             {
                 //boxes[lastCube, row].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
-                audioSource.PlayOneShot(tapSound);
+                SePlayer.Instance.Play(0);
                 Destroy(boxes[lastCube, row]);
                 lastCube++;
                 boxRemain--;
@@ -182,7 +180,7 @@ public class boxManager : MonoBehaviour
     {
         row++;
         lastCube = 0;
-        audioSource.PlayOneShot(moveSound);
+        SePlayer.Instance.Play(3);
     }
 
     //現在の列を終えて次の列に行くことができるかどうか判定

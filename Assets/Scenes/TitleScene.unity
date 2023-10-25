@@ -1712,7 +1712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5917604986509176631, guid: fb9042acf9b6c402ca5af41fd9c4d09b, type: 3}
       propertyPath: SeList.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5917604986509176631, guid: fb9042acf9b6c402ca5af41fd9c4d09b, type: 3}
       propertyPath: SeList.Array.data[0]
@@ -1726,6 +1726,14 @@ PrefabInstance:
       propertyPath: SeList.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: f60f6337e2b194caaaff4a9f4acf0cd3, type: 3}
+    - target: {fileID: 5917604986509176631, guid: fb9042acf9b6c402ca5af41fd9c4d09b, type: 3}
+      propertyPath: SeList.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f0a0eecf99eed448b182889283584a3, type: 3}
+    - target: {fileID: 5917604986509176631, guid: fb9042acf9b6c402ca5af41fd9c4d09b, type: 3}
+      propertyPath: SeList.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 267d44534285544a5ae59530a8a10514, type: 3}
     - target: {fileID: 5917604986509176631, guid: fb9042acf9b6c402ca5af41fd9c4d09b, type: 3}
       propertyPath: DontDestroyOnLoadOnAwake
       value: 1
