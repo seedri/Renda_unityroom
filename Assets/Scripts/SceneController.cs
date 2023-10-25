@@ -1,3 +1,4 @@
+using naichilab.EasySoundPlayer.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,15 +21,21 @@ public class SceneController : MonoBehaviour
     public void LoadStage1()
     {
         SceneManager.LoadScene("GameScene1");
+        //BgmPlayer.Instance.Stop();
+        BgmPlayer.Instance.Play(1);
     }
 
     public void LoadStage2()
     {
         SceneManager.LoadScene("GameScene2");
+        //BgmPlayer.Instance.Stop();
+        BgmPlayer.Instance.Play(1);
     }
 
     public void LoadTitle()
     {
         SceneManager.LoadScene("TitleScene");
+        //BgmPlayer.Instance.Stop();
+        BgmPlayer.Instance.Play(0);
     }
 }
