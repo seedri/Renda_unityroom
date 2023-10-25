@@ -8,6 +8,7 @@ using TMPro;
 using DG.Tweening;
 using static System.TimeZoneInfo;
 using naichilab.EasySoundPlayer.Scripts;
+using unityroom.Api;
 
 public class gameManager : MonoBehaviour
 {
@@ -109,6 +110,9 @@ public class gameManager : MonoBehaviour
         timeFlag = false;
         timeClear.text = "タイム:" + timeText.text;
         gameClearObj.SetActive(true);
+        int thisScene = 1;
+        if (SceneManager.GetActiveScene().name == "GameScene2") thisScene = 2; 
+            UnityroomApiClient.Instance.SendScore(thisScene,_time,ScoreboardWriteMode.HighScoreAsc);
         SePlayer.Instance.Play(4);
     }
 
