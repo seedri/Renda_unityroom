@@ -116,9 +116,9 @@ public class boxManager : MonoBehaviour
         {
             if (boxes[lastCube, row].tag == "BoxRed")
             {
-                boxes[lastCube, row].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
+                //boxes[lastCube, row].transform.DOMove(new Vector3(-4f, 0, 0), 0.15f).SetRelative(true).SetEase(Ease.OutQuint);
                 audioSource.PlayOneShot(tapSound);
-                Destroy(boxes[lastCube, row], 0.1f);
+                Destroy(boxes[lastCube, row]);
                 lastCube++;
                 boxRemain--;
                 boxRemainRow[row]--;
